@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
     service: 'gmail', // e.g., 'gmail', 'outlook', 'yahoo'
     auth: {
         user: '230171601177@crescent.education', // Your email address
-        pass: 'hael szsy cfwo ttcc ' // IMPORTANT: You need to generate an application-specific password from your Google Account security settings and replace 'StefinaE@2006' with it.
+        pass: 'hael szsy cfwo ttcc' // IMPORTANT: You need to generate an application-specific password from your Google Account security settings and replace 'StefinaE@2006' with it.
     }
 });
 
