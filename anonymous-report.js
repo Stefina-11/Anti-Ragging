@@ -4,17 +4,39 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault(); // Prevent default form submission
 
         const incidentDetails = document.getElementById('incidentDetails').value;
-        const recipientEmail = '230171601177@crescent.education';
-        const subject = 'Anonymous Ragging Report';
-        const body = `Incident Details:\n${incidentDetails}\n\nThis report was submitted anonymously through the Anti-Ragging System.`;
+        const imageInput = document.getElementById('imageUpload');
+        const imageFile = imageInput.files[0]; // Get the selected image file
 
-        // In a real application, this data would be sent to a backend server
-        // which would then securely email the details to the recipient.
-        // For this static website, we simulate the submission and inform the user.
+        const data = {
+            incidentDetails: incidentDetails,
+            imageName: imageFile ? imageFile.name : null // Send image name if file exists
+        };
 
-        alert(`Anonymous report submitted!\n\nIn a real system, these details would be securely sent to:\n${recipientEmail}\n\nThank you for your report.`);
-
-        // Optionally, clear the form after "submission"
-        form.reset();
+        // Send data to the backend server
+        fetch('http://localhost:3000/send-anonymous-report', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(`Anonymous report submitted: ${data.message}`);
+            } else {
+                alert('Anonymous report submitted successfully!');
+            }
+            form.reset(); // Clear the form after submission
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            // Check if the error object has a message from the backend
+            if (error.message) {
+                alert(`Failed to submit anonymous report: ${error.message}`);
+            } else {
+                alert('Failed to submit anonymous report. Please ensure the backend server is running and configured correctly.');
+            }
+        });
     });
 });

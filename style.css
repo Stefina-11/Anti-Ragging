@@ -18,7 +18,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: 90%;
-    max-width: 600px;
+    max-width: 1000px; /* Increased max-width for wider website */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,6 +50,7 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Ensure it's above other content */
 }
 
 .header-button:hover {
@@ -65,7 +66,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow for 3D effect */
     text-align: center;
     width: 90%;
-    max-width: 600px;
+    max-width: 1000px; /* Increased max-width for wider website */
     position: relative; /* Needed for absolute positioning of header button */
 }
 
@@ -77,6 +78,13 @@ h1 {
 p {
     margin-bottom: 30px;
     font-size: 1.1em;
+}
+
+.email-note {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: -10px; /* Adjust as needed to bring it closer to the form */
+    margin-bottom: 20px;
 }
 
 .options {
