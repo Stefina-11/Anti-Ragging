@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Complaint</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="personal-complaint.js"></script>
+</head>
+<body>
+    <div class="header">
+        <img src="https://crescent.education/wp-content/uploads/2024/10/crescent-logo.png" alt="Crescent Institute Logo" class="college-logo">
+        <h2>B.S. Abdur Rahman Crescent Institute of Science & Technology</h2>
+    </div>
+    <div class="container">
+        <h1>Personal Complaint</h1>
+        <p>Please provide your details and the incident information. Your complaint will be handled with utmost confidentiality.</p>
+        <form>
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" placeholder="Your Full Name">
+            </div>
+            <div class="form-group">
+                <label for="studentId">Student ID (Optional):</label>
+                <input type="text" id="studentId" placeholder="Your Student ID">
+            </div>
+            <div class="form-group">
+                <label for="contactEmail">Contact Email:</label>
+                <input type="email" id="contactEmail" placeholder="Your Email Address">
+            </div>
+            <div class="form-group">
+                <label for="incidentDetails">Incident Details:</label>
+                <textarea id="incidentDetails" rows="10" placeholder="Describe the incident, date, time, location, and any relevant individuals involved."></textarea>
+            </div>
+            <button type="submit" class="option-button">Submit Personal Complaint</button>
+            <button type="button" class="option-button back-button" onclick="window.location.href='index.html'">Back to Home</button>
+        </form>
+    </div>
+</body>
+</html>

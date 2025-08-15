@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Support</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chat-window {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #eee;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .chat-input button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+        .message.user {
+            background-color: #e0f7fa;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .message.bot {
+            background-color: #f0f0f0;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://crescent.education/wp-content/uploads/2024/10/crescent-logo.png" alt="Crescent Institute Logo" class="college-logo">
+        <h2>B.S. Abdur Rahman Crescent Institute of Science & Technology</h2>
+    </div>
+    <div class="container">
+        <h1>Chatbot Support</h1>
+        <p>Speak with our AI chatbot for confidential support and guidance.</p>
+        <div class="chat-window">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">Hello! I'm here to help. Please tell me what's on your mind.</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button id="sendMessage">Send</button>
+            </div>
+        </div>
+        <button type="button" class="option-button" id="reportChatButton">Report this Conversation</button>
+        <button type="button" class="option-button back-button" onclick="window.location.href='index.html'">Back to Home</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const sendMessageButton = document.getElementById('sendMessage');
+            const reportChatButton = document.getElementById('reportChatButton');
+            let chatHistory = []; // To store chat messages
+
+            sendMessageButton.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const userMessage = chatInput.value.trim();
+                if (userMessage === '') return;
+
+                appendMessage(userMessage, 'user');
+                chatHistory.push({ sender: 'user', text: userMessage });
+                chatInput.value = '';
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botResponse = getBotResponse(userMessage);
+                    appendMessage(botResponse, 'bot');
+                    chatHistory.push({ sender: 'bot', text: botResponse });
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+                }, 500);
+            }
+
+            function appendMessage(text, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', sender);
+                messageElement.textContent = text;
+                chatMessages.appendChild(messageElement);
+            }
+
+            reportChatButton.addEventListener('click', () => {
+                const recipientEmail = '230171601177@crescent.education';
+                const subject = 'Chatbot Conversation Report';
+                let body = 'Chatbot Conversation History:\n\n';
+                chatHistory.forEach(msg => {
+                    body += `${msg.sender.toUpperCase()}: ${msg.text}\n`;
+                });
+                body += `\nThis conversation was reported through the Anti-Ragging System chatbot.`;
+
+                alert(`Chat conversation reported!\n\nIn a real system, these details would be securely sent to:\n${recipientEmail}\n\nThank you for your report.`);
+            });
+
+            function getBotResponse(userMessage) {
+                const lowerCaseMessage = userMessage.toLowerCase();
+                if (lowerCaseMessage.includes('ragging')) {
+                    return "I understand you're concerned about ragging. Please tell me more about what happened or what you're experiencing.";
+                } else if (lowerCaseMessage.includes('fear') || lowerCaseMessage.includes('scared')) {
+                    return "It's brave of you to speak up. Please know that your safety is our priority, and we are here to support you confidentially.";
+                } else if (lowerCaseMessage.includes('help')) {
+                    return "I'm here to help. What kind of help do you need? Are you looking for advice, a listening ear, or information on reporting?";
+                } else if (lowerCaseMessage.includes('privacy') || lowerCaseMessage.includes('anonymous')) {
+                    return "Your privacy is very important to us. Anonymous reporting options are available if you prefer not to disclose your identity.";
+                } else if (lowerCaseMessage.includes('thank you') || lowerCaseMessage.includes('thanks')) {
+                    return "You're welcome! I'm glad I could assist.";
+                } else if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
+                    return "Hello there! How can I assist you today regarding ragging concerns?";
+                } else {
+                    return "I'm still learning, but I'm here to listen. Can you rephrase or tell me more?";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
