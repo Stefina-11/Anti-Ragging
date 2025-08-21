@@ -36,11 +36,14 @@
         }
         .chat-input button {
             padding: 10px 15px;
-            background-color: #007bff;
+            background-color: #003366; /* Deep Navy Blue */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+        .chat-input button:hover {
+            background-color: #6699CC; /* Medium Blue for hover */
         }
         .message {
             margin-bottom: 10px;
@@ -49,12 +52,12 @@
             max-width: 80%;
         }
         .message.user {
-            background-color: #e0f7fa;
+            background-color: #E9F5FF; /* Light blue for user messages */
             align-self: flex-end;
             margin-left: auto;
         }
         .message.bot {
-            background-color: #f0f0f0;
+            background-color: #F0F0F0; /* Light grey for bot messages */
             align-self: flex-start;
             margin-right: auto;
         }
@@ -145,7 +148,12 @@
                     return "You're welcome! I'm glad I could assist.";
                 } else if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
                     return "Hello there! How can I assist you today regarding ragging concerns?";
-                } else {
+                } else if (lowerCaseMessage.includes('stranger') || lowerCaseMessage.includes('stragers')) {
+                    return "If you encounter a stranger and feel unsafe, it's important to prioritize your safety. You can try to move to a public place, inform someone you trust, or contact authorities if necessary.";
+                } else if (lowerCaseMessage.includes('sadness') || lowerCaseMessage.includes('pressure') || lowerCaseMessage.includes('depressed') || lowerCaseMessage.includes('stress')) {
+                    return "I understand you're feeling down. It's important to talk about your feelings. Consider reaching out to a trusted friend, family member, or a professional counselor. Taking breaks, practicing mindfulness, and engaging in activities you enjoy can also help. Remember, you're not alone.";
+                }
+                else {
                     return "I'm still learning, but I'm here to listen. Can you rephrase or tell me more?";
                 }
             }

@@ -14,11 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // In a real application, this data would be sent to a backend server
         // which would then securely email the details to the recipient.
-        // For this static website, we simulate the submission and inform the user.
-
-        alert(`Personal complaint submitted!\n\nIn a real system, these details would be securely sent to:\n${recipientEmail}\n\nThank you for your complaint.`);
-
-        // Optionally, clear the form after "submission"
-        form.reset();
+        // Send data to the backend
+        fetch('http://localhost:3000/send-personal-complaint', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ fullName, studentId, contactEmail, incidentDetails }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                form.reset(); // Clear the form on success
+            } else {
+                alert('An unknown error occurred.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to submit personal complaint. Please try again later.');
+        });
     });
 });

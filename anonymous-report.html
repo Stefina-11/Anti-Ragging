@@ -17,8 +17,32 @@
         <p>Please provide details of the incident anonymously. Your identity will be protected.</p>
         <form>
             <div class="form-group">
+                <label for="location">Location:</label>
+                <select id="location">
+                    <option value="">Select Location</option>
+                    <option value="Admin Block">Admin Block</option>
+                    <option value="MS Block">MS Block</option>
+                    <option value="SM Block">SM Block</option>
+                    <option value="SE Block">SE Block</option>
+                    <option value="Life Science Block">Life Science Block</option>
+                    <option value="Architecture Block">Architecture Block</option>
+                    <option value="ECE Block">ECE Block</option>
+                    <option value="Main Canteen">Main Canteen</option>
+                    <option value="Lemon Tree Canteen">Lemon Tree Canteen</option>
+                    <option value="Banyan Canteen">Banyan Canteen</option>
+                    <option value="Chai Kings">Chai Kings</option>
+                    <option value="Football Ground">Football Ground</option>
+                    <option value="Main Ground">Main Ground</option>
+                    <option value="Girls Hostel">Girls Hostel</option>
+                    <option value="Boys Hostel">Boys Hostel</option>
+                    <option value="Car Parking">Car Parking</option>
+                    <option value="Bike Parking">Bike Parking</option>
+                    <option value="Medical Center">Medical Center</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="incidentDetails">Incident Details:</label>
-                <textarea id="incidentDetails" rows="10" placeholder="Describe the incident, date, time, location, and any relevant individuals involved."></textarea>
+                <textarea id="incidentDetails" rows="10" placeholder="Describe the incident, date, time, and any relevant individuals involved."></textarea>
             </div>
             <div class="form-group">
                 <label for="imageUpload">Upload Image (Optional):</label>
